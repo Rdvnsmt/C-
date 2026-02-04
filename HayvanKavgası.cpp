@@ -1,4 +1,4 @@
-﻿#include <fstream>
+#include <fstream>
 #include <vector>
 #include <iostream>
 #include <string>
@@ -362,7 +362,6 @@ void dataCek() {
     ifstream dosyaoku("Kayitlar\\data.txt");
     string isim = "";
     string skorString = "";
-    int skor = 0;
     vector<kullanici> skorlar;
 
     if (dosyaoku.is_open()) {
@@ -372,8 +371,7 @@ void dataCek() {
            
             if (getline(dosyaoku, skorString)) {
                 if (!skorString.empty()) {
-                    skor = stoi(skorString);
-                    skorlar.push_back(kullanici(isim, skor));
+                    skorlar.push_back(kullanici(isim, stoi(skorString)));
                 }
             }
         }
@@ -383,9 +381,9 @@ void dataCek() {
         int sayac = 0;
         int max;
 
-        for (int i = 0; i < (int)skorlar.size(); i++) {
+        for (int i = 0; i < skorlar.size() && i < 10; i++) {
 
-            for (int j = 0; j < (int)skorlar.size() - 1; j++) {
+            for (int j = 0; j < skorlar.size() - 1; j++) {
 
                 if (skorlar[j].getSkor() < skorlar[j + 1].getSkor()) {
                     kullanici gecici = skorlar[j];
